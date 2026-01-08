@@ -1,0 +1,6 @@
+pyproject.toml
+clinical_insight_backend.egg-info/PKG-INFO
+clinical_insight_backend.egg-info/SOURCES.txt
+clinical_insight_backend.egg-info/dependency_links.txt
+clinical_insight_backend.egg-info/requires.txt
+clinical_insight_backend.egg-info/top_level.txt
