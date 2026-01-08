@@ -48,4 +48,73 @@ body {
   .text-glow {
     @apply drop-shadow-[0_0_10px_rgba(255, 255, 255, 0.5)];
   }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-thumb-white\/10::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .scrollbar-track-transparent::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* Prose overrides for markdown in chat */
+.prose-invert {
+  --tw-prose-body: #e5e7eb;
+  --tw-prose-headings: #fff;
+  --tw-prose-lead: #d1d5db;
+  --tw-prose-links: #60a5fa;
+  --tw-prose-bold: #fff;
+  --tw-prose-counters: #9ca3af;
+  --tw-prose-bullets: #9ca3af;
+  --tw-prose-hr: rgba(255, 255, 255, 0.1);
+  --tw-prose-quotes: #e5e7eb;
+  --tw-prose-quote-borders: rgba(255, 255, 255, 0.2);
+  --tw-prose-captions: #9ca3af;
+  --tw-prose-code: #a5b4fc;
+  --tw-prose-pre-code: #e5e7eb;
+  --tw-prose-pre-bg: rgba(0, 0, 0, 0.3);
+  --tw-prose-th-borders: rgba(255, 255, 255, 0.2);
+  --tw-prose-td-borders: rgba(255, 255, 255, 0.1);
+}
+
+/* Table styling in prose */
+.prose table {
+  @apply text-sm;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.prose th, .prose td {
+  @apply px-2 py-1 text-left;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.prose th {
+  @apply bg-white/5 font-medium;
+}
+
+.prose tr:hover {
+  @apply bg-white/5;
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

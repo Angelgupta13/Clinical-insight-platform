@@ -1,4 +1,4 @@
-// File: C:\Users\angel gupta\Desktop\project\frontend\app\layout.tsx
+// File: D:\code\Clinical-insight-platform\frontend\app\layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
