@@ -31,10 +31,10 @@ def test_data_processor():
     
     print(f"   ✅ First study: {folders[0][:50]}...")
     
-    # Test 2: Get all study summaries
-    print("\n2️⃣ Loading study summaries (this may take a moment)...")
-    summaries = get_all_studies_summary()
-    print(f"   Loaded {len(summaries)} study summaries")
+    # Test 2: Get all study summaries and update cache
+    print("\n2️⃣ Loading study summaries and updating cache (this may take a moment)...")
+    summaries = get_all_studies_summary(force_refresh=True)
+    print(f"   Loaded {len(summaries)} study summaries and updated cache")
     
     # Test 3: Check critical fields
     print("\n3️⃣ Validating data structure...")

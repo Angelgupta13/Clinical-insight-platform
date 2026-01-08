@@ -415,13 +415,50 @@ def get_study_summary(study_folder_name: str) -> Dict[str, Any]:
     }
 
 
-def get_all_studies_summary() -> List[Dict[str, Any]]:
+# ... existing imports ...
+import json
+
+# Cache configuration
+CACHE_DIR = os.path.join(os.path.dirname(__file__), "data_cache")
+CACHE_FILE = os.path.join(CACHE_DIR, "studies_cache.json")
+
+def load_cache() -> Optional[List[Dict[str, Any]]]:
+    """Load study summaries from JSON cache."""
+    if os.path.exists(CACHE_FILE):
+        try:
+            with open(CACHE_FILE, 'r') as f:
+                logger.info(f"Loading data from cache: {CACHE_FILE}")
+                return json.load(f)
+        except Exception as e:
+            logger.error(f"Error loading cache: {e}")
+    return None
+
+def save_cache(data: List[Dict[str, Any]]):
+    """Save study summaries to JSON cache."""
+    try:
+        os.makedirs(CACHE_DIR, exist_ok=True)
+        with open(CACHE_FILE, 'w') as f:
+            json.dump(data, f, indent=2)
+        logger.info(f"Saved data to cache: {CACHE_FILE}")
+    except Exception as e:
+        logger.error(f"Error saving cache: {e}")
+
+
+def get_all_studies_summary(force_refresh: bool = False) -> List[Dict[str, Any]]:
     """
     Get summaries for all studies in the dataset.
+    
+    Args:
+        force_refresh: If True, ignore cache and re-process all files.
     
     Returns:
         List of study summary dictionaries
     """
+    if not force_refresh:
+        cached_data = load_cache()
+        if cached_data:
+            return cached_data
+
     studies = find_study_folders()
     summaries = []
     
@@ -446,6 +483,9 @@ def get_all_studies_summary() -> List[Dict[str, Any]]:
         key=lambda x: x.get("risk", {}).get("raw_score", 0), 
         reverse=True
     )
+    
+    # Save to cache
+    save_cache(summaries)
     
     return summaries
 
